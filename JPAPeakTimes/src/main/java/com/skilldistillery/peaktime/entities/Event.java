@@ -1,4 +1,4 @@
-package com.skilldistillery.peakTimes.entities;
+package com.skilldistillery.peaktime.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +17,7 @@ public class Event{
 	public int getId() {
 		return id;
 	}
-
+public Event(){};
 	public void setId(int id) {
 		this.id = id;
 	}
