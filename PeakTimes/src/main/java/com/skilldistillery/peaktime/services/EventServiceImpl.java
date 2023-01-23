@@ -16,21 +16,21 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public List<Event> allEvents() {
-		
+
 		return eventRepo.findAll();
 	}
 
 	@Override
 	public Event findById(int id) {
-		
+
 		return eventRepo.findById(id).get();
 	}
 
 	@Override
 	public List<Event> findBySearch(String keyword) {
-		
+
 		return eventRepo.findByNameLike("%"+ keyword + "%");
-		
+
 	}
 
 	@Override
@@ -42,23 +42,23 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public Event update(int id, Event event) {
 		Event updated = eventRepo.findById(id).get();
-		
+
 		updated.setName(event.getName());
-		
-		
+
+
 		return eventRepo.saveAndFlush(updated);
 	}
 
 	@Override
 	public boolean deleteById(int id) {
 	boolean deleted = false;
-	
+
 		eventRepo.deleteById(id);
 		if(!eventRepo.existsById(id)) {
 			deleted = true;
 		}
 
-		
+
 		return deleted;
 	}
 

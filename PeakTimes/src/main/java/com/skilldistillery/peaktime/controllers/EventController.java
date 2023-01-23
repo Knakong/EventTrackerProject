@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.peaktime.entities.Event;
-import com.skilldistillery.peaktime.repositories.EventRepository;
 import com.skilldistillery.peaktime.services.EventService;
 
 @RestController
@@ -52,14 +51,14 @@ public class EventController {
 
 		return event;
 	}
-	
-	
+
+
 	@GetMapping("events/search/{keyword}")
 	public List<Event> findByKeyword(@PathVariable String keyword, HttpServletRequest req, HttpServletResponse resp){
-		
+
 		return eventService.findBySearch(keyword);
-		
-		
+
+
 	}
 
 	@PostMapping("events")
