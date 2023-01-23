@@ -23,31 +23,49 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public Event findById(int id) {
 		
-		return null;
+		return eventRepo.findById(id).get();
 	}
 
 	@Override
-	public Event findBySearch(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Event> findBySearch(String keyword) {
+		
+		return eventRepo.findByNameLike("%"+ keyword + "%");
+		
 	}
 
 	@Override
 	public Event create(Event event) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return eventRepo.saveAndFlush(event);
 	}
 
 	@Override
-	public Event update(int id, Event even) {
-		// TODO Auto-generated method stub
-		return null;
+	public Event update(int id, Event event) {
+		Event updated = eventRepo.findById(id).get();
+		
+		updated.setName(event.getName());
+		
+		
+		return eventRepo.saveAndFlush(updated);
 	}
 
 	@Override
 	public boolean deleteById(int id) {
+	boolean deleted = false;
+	
+		eventRepo.deleteById(id);
+		if(!eventRepo.existsById(id)) {
+			deleted = true;
+		}
+
+		
+		return deleted;
+	}
+
+	@Override
+	public boolean existById(int id) {
 		// TODO Auto-generated method stub
-		return false;
+		return eventRepo.existsById(id);
 	}
 
 }

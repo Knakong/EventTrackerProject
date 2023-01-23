@@ -9,12 +9,12 @@ public interface EventService {
 
 	Event findById(int id);
 
-	Event findBySearch(String keyword);
+	List<Event> findBySearch(String keyword);
 
 	Event create(Event event);
 
-	Event update(int id, Event even);
-
+	Event update(int id, Event event);
+	boolean existById(int id);
 
 	boolean deleteById(int id);
 
