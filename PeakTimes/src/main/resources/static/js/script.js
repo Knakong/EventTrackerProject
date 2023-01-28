@@ -7,6 +7,11 @@ window.addEventListener('load', function(e) {
 function init() {
 
 	loadPeakTimes();
+	console.log(Date.get(now));
+
+
+
+
 }
 
 function loadPeakTimes(){
@@ -29,19 +34,35 @@ function loadPeakTimes(){
 
 xhr.send();
 
+
+
 }
 
 function displayEvents(eventList) {
 	//DOM
 
-console.log('displayEvents called');
+
 
 }
 
 function deleteEvent(){
+let xhr = new XMLHttpRequest(id);
 
+xhr.open('DEL', 'api/events/${id}');
+
+xhr.onreadystatechange = function(){
+	if(xhr.readyState === 4){
+		if(xhr.status === 200){
+			console.log("delete works");
+		}
+	}else{
+		console.log("delted didn't work");
+	}
 }
 
 
 
 
+
+xhr.send();
+}
