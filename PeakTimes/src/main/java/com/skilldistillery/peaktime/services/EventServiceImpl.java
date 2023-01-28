@@ -29,7 +29,7 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public List<Event> findBySearch(String keyword) {
 
-		return eventRepo.findByNameLike("%"+ keyword + "%");
+		return eventRepo.findByTitleLike("%"+ keyword + "%");
 
 	}
 
@@ -43,7 +43,7 @@ public class EventServiceImpl implements EventService {
 	public Event update(int id, Event event) {
 		Event updated = eventRepo.findById(id).get();
 
-		updated.setName(event.getName());
+		updated.setTitle(event.getTitle());
 
 
 		return eventRepo.saveAndFlush(updated);

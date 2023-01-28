@@ -8,5 +8,5 @@ import com.skilldistillery.peaktime.entities.Event;
 
 public interface EventRepository extends JpaRepository<Event, Integer> {
 
-List<Event> findByNameLike(String keyword);
+List<Event> findByTitleLike(String keyword);
 }

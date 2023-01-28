@@ -1,6 +1,7 @@
 package com.skilldistillery.peaktime.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -43,7 +44,13 @@ class EventTest {
 
 	@Test
 	void testEventEntity(){
-		assertEquals("Copper Mountain", event.getName());
+		assertEquals("just be", event.getTitle());
+		assertEquals(27, event.getDate().getDayOfMonth());
+		assertNotNull(event.getRant());
+		assertNotNull(event.getImgurl());
+		assertNotNull(event.getDisabled());
+		
+		
 	}
 
 }
