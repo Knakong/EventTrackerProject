@@ -1,0 +1,72 @@
+<div *ngIf="!showNewForm && !showEditForm">
+<button (click)="showNewForm = true">New entry</button>
+
+</div>
+
+<div *ngFor="let peaktime of peaktimes">
+  <div *ngIf="!selected && !showNewForm" (click)="selected = peaktime">
+    <h3>{{ peaktime.title }}</h3>
+    <p>{{ peaktime.date | date : "mediumDate" }}</p>
+  </div>
+  <br />
+</div>
+
+<div *ngIf="selected && !showEditForm">
+  <div>
+    <h3>{{ selected.title }}</h3>
+    <p>{{ selected.date | date : "full" }}</p>
+    <br />
+    <p>{{ selected.rant }}</p>
+
+    <img [src]="selected.imgurl" />
+
+    <button (click)="selected = null">Back</button>
+
+    <button (click)="showEditForm = true">Edit</button>
+  </div>
+</div>
+
+<div *ngIf="selected && showEditForm">
+  <form>
+    <label>Event:</label>
+    <input type="hidden" name="id" placeholder={{selected.id}} [(ngModel)]="selected.id" />
+    <br />
+    <label for="Musing"></label>
+    <input type="text" name="rant" placeholder={{selected.rant}} [(ngModel)]="selected.rant" />
+    <br />
+    <label>Titled</label>
+    <input type="text" name="title" placeholder={{selected.title}} [(ngModel)]="selected.title"/>
+    <br/>
+    <label>Img Url:</label>
+    <input type="text" name="imgurl" placeholder={{selected.imgurl}} [(ngModel)]="selected.imgurl"/>
+    <br />
+
+    <button (click)="update(selected)">Submit Changes</button>
+  </form>
+</div>
+
+<div *ngIf="showNewForm">
+<form>
+<label for="rant">muse away</label>
+<br>
+<input type="text" name="rant" placeholder="write as or as little as you'd like" [(ngModel)]="newPeakTime.rant">
+
+<label for="title">Title?:</label>
+<br>
+<input type="text" name="title" placeholder="title it or leave it empty" [(ngModel)]="newPeakTime.title">
+
+<input type="hidden" name="date" value=" {{today| date:'fullDate'}} " [(ngModel)]="newPeakTime.date">
+
+<label for="imgurl">Include an image</label>
+<br>
+<input type="text" name="imgurl" placeholder="source link for hosted image" [(ngModel)]="newPeakTime.imgurl">
+
+<button (click)="create(newPeakTime)">summit new Entry</button>
+
+<button (click)="showNewForm = false">Back</button>
+</form>
+
+
+
+
+</div>
