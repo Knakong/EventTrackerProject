@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { isEmpty, Observable } from 'rxjs';
 import { PeakTimeService } from './../../services/peak-time.service';
 import { PeakTime } from 'src/app/models/peak-time';
 import { Component, OnInit } from '@angular/core';
@@ -20,11 +20,11 @@ export class EventComponent implements OnInit {
 
   peaktimes: PeakTime[] = [];
 
-  newPeakTime : PeakTime = new PeakTime();
+  newPeakTime: PeakTime = new PeakTime();
   selected: PeakTime | null = null;
   showNewForm = false;
   showEditForm = false;
-  today: number = Date.now()
+  today: number = Date.now();
 
   update(peakTime: PeakTime) {
     this.peaktimeService.update(peakTime, peakTime.id).subscribe({
@@ -32,12 +32,15 @@ export class EventComponent implements OnInit {
         this.selected = data;
         this.reload();
         this.showEditForm = false;
-
       },
     });
   }
 
-  create(peakTime : PeakTime ){
+  create(peakTime: PeakTime) {
+    if(peakTime.title == undefined || ""){
+      peakTime.title = "untitled";
+    }
+
     this.peaktimeService.create(peakTime).subscribe({
       next: (data) => {
         this.selected = data;
@@ -46,15 +49,9 @@ export class EventComponent implements OnInit {
         this.newPeakTime = new PeakTime();
       },
     });
-
   }
 
-
-  delete(peakTime: PeakTime) {
-
-
-
-  }
+  delete(peakTime: PeakTime) {}
 
   reload() {
     this.peaktimeService.index().subscribe({

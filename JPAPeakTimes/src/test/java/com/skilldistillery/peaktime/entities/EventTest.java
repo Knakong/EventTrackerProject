@@ -45,7 +45,7 @@ class EventTest {
 	@Test
 	void testEventEntity(){
 		assertEquals("just be", event.getTitle());
-		assertEquals(27, event.getDate().getDayOfMonth());
+		assertEquals(27, event.getCreatedAt().getDayOfMonth());
 		assertNotNull(event.getRant());
 		assertNotNull(event.getImgurl());
 		assertNotNull(event.getDisabled());

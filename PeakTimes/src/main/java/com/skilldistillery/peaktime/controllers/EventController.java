@@ -1,11 +1,13 @@
 package com.skilldistillery.peaktime.controllers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,7 @@ import com.skilldistillery.peaktime.services.EventService;
 
 @RestController
 @RequestMapping("api")
+@CrossOrigin({"*", "http://localhost/"})
 public class EventController {
 
 	@Autowired
@@ -65,6 +68,7 @@ public class EventController {
 	public Event create(@RequestBody Event event, HttpServletResponse resp, HttpServletRequest req) {
 
 		Event newEvent;
+		
 
 		try {
 			newEvent = eventService.create(event);

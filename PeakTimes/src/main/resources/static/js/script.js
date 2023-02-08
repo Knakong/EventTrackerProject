@@ -39,7 +39,7 @@ xhr.send();
 }
 
 function displayEvents(eventList) {
-	//DOM
+	
 
 
 

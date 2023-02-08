@@ -29,14 +29,16 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public List<Event> findBySearch(String keyword) {
 
-		return eventRepo.findByTitleLike("%"+ keyword + "%");
+		return eventRepo.findByTitleLike("%" + keyword + "%");
 
 	}
 
 	@Override
 	public Event create(Event event) {
-
-		return eventRepo.saveAndFlush(event);
+		
+	
+		Event newEvent = eventRepo.saveAndFlush(event);
+	return newEvent;
 	}
 
 	@Override
@@ -45,26 +47,23 @@ public class EventServiceImpl implements EventService {
 
 		updated.setTitle(event.getTitle());
 
-
 		return eventRepo.saveAndFlush(updated);
 	}
 
 	@Override
 	public boolean deleteById(int id) {
-	boolean deleted = false;
+		boolean deleted = false;
 
 		eventRepo.deleteById(id);
-		if(!eventRepo.existsById(id)) {
+		if (!eventRepo.existsById(id)) {
 			deleted = true;
 		}
-
 
 		return deleted;
 	}
 
 	@Override
 	public boolean existById(int id) {
-		// TODO Auto-generated method stub
 		return eventRepo.existsById(id);
 	}
 
